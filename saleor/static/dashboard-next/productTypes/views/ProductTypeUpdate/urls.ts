@@ -12,3 +12,7 @@ export const addAttributeUrl = (
     : urlJoin(productTypeUrl(productTypeId), "attribute/variant/add");
 export const editAttributeUrl = (productTypeId: string, attributeId: string) =>
   urlJoin(productTypeUrl(productTypeId), "attribute", attributeId);
+export const productTypeRemovePath = (id: string) =>
+  urlJoin(productTypeUrl(id), "remove");
+export const productTypeRemoveUrl = (id: string) =>
+  productTypeRemovePath(encodeURIComponent(id));
