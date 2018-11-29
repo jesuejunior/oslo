@@ -84,6 +84,14 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                           updateVariant.opts.data.productVariantUpdate.errors
                       )
                     );
+                    const removeTransitionState = getMutationState(
+                      deleteVariant.opts.called,
+                      deleteVariant.opts.loading,
+                      maybe(
+                        () =>
+                          deleteVariant.opts.data.productVariantDelete.errors
+                      )
+                    );
                     const handleImageSelect = (id: string) => () => {
                       if (variant) {
                         if (
@@ -164,6 +172,7 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                           )}
                           render={({ match }) => (
                             <ProductVariantDeleteDialog
+                              confirmButtonState={removeTransitionState}
                               onClose={() =>
                                 navigate(
                                   productVariantEditUrl(
@@ -172,7 +181,11 @@ export const ProductVariant: React.StatelessComponent<ProductUpdateProps> = ({
                                   )
                                 )
                               }
-                              onConfirm={() => deleteVariant.mutate(variantId)}
+                              onConfirm={() =>
+                                deleteVariant.mutate({
+                                  id: variantId
+                                })
+                              }
                               open={!!match}
                               name={maybe(() => data.productVariant.name)}
                             />
