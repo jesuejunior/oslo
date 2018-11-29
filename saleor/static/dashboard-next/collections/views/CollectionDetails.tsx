@@ -165,6 +165,24 @@ export const CollectionDetails: React.StatelessComponent<
                                   .errors
                             )
                           );
+                          const assignTransitionState = getMutationState(
+                            assignProduct.opts.called,
+                            assignProduct.opts.loading,
+                            maybe(
+                              () =>
+                                assignProduct.opts.data.collectionAddProducts
+                                  .errors
+                            )
+                          );
+                          const removeTransitionState = getMutationState(
+                            removeCollection.opts.called,
+                            removeCollection.opts.loading,
+                            maybe(
+                              () =>
+                                removeCollection.opts.data.collectionDelete
+                                  .errors
+                            )
+                          );
                           return (
                             <>
                               <WindowTitle
@@ -253,6 +271,7 @@ export const CollectionDetails: React.StatelessComponent<
                                 )}
                                 render={({ match }) => (
                                   <CollectionAssignProductDialog
+                                    confirmButtonState={assignTransitionState}
                                     open={!!match}
                                     fetch={searchProducts}
                                     loading={searchProductsOpts.loading}
@@ -284,6 +303,7 @@ export const CollectionDetails: React.StatelessComponent<
                                 )}
                                 render={({ match }) => (
                                   <ActionDialog
+                                    confirmButtonState={removeTransitionState}
                                     onClose={() =>
                                       navigate(
                                         collectionUrl(encodeURIComponent(id)),
