@@ -7,7 +7,7 @@ import Messages from "../../components/messages";
 import Navigator from "../../components/Navigator";
 import { WindowTitle } from "../../components/WindowTitle";
 import i18n from "../../i18n";
-import { maybe, getMutationState } from "../../misc";
+import { getMutationState, maybe } from "../../misc";
 import { orderUrl } from "../../orders/urls";
 import CustomerDetailsPage from "../components/CustomerDetailsPage/CustomerDetailsPage";
 import {
